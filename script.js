@@ -1,5 +1,5 @@
 /* =========================================
-   CANTEENGO — INTERACTIVE FEATURES
+   CANTEENGO — ORDERING SYSTEM
    ========================================= */
 
 let cart = [];
@@ -19,10 +19,9 @@ const cartCount = document.getElementById("cartCount");
 const cartTotal = document.getElementById("cartTotal");
 
 const searchInput = document.getElementById("searchInput");
-const foodGrid = document.getElementById("foodGrid");
+const foodCards = document.querySelectorAll(".food-card");
 
 const categoryButtons = document.querySelectorAll(".category");
-const foodCards = document.querySelectorAll(".food-card");
 
 const checkoutButton = document.getElementById("checkoutButton");
 
@@ -32,10 +31,12 @@ const checkoutButton = document.getElementById("checkoutButton");
    ========================================= */
 
 cartButton.addEventListener("click", function () {
+
     cartPanel.classList.add("active");
     cartOverlay.classList.add("active");
 
     document.body.style.overflow = "hidden";
+
 });
 
 
@@ -44,10 +45,12 @@ cartButton.addEventListener("click", function () {
    ========================================= */
 
 function closeCartPanel() {
+
     cartPanel.classList.remove("active");
     cartOverlay.classList.remove("active");
 
     document.body.style.overflow = "";
+
 }
 
 closeCart.addEventListener("click", closeCartPanel);
@@ -61,25 +64,33 @@ cartOverlay.addEventListener("click", closeCartPanel);
 
 function addToCart(name, price) {
 
-    const existingItem = cart.find(item => item.name === name);
+    const existingItem =
+        cart.find(item => item.name === name);
 
     if (existingItem) {
+
         existingItem.quantity += 1;
+
     } else {
+
         cart.push({
             name: name,
             price: price,
             quantity: 1
         });
+
     }
 
     updateCart();
 
-    // Open cart automatically
-    cartPanel.classList.add("active");
-    cartOverlay.classList.add("active");
+    /*
+       IMPORTANT:
+       We DO NOT open the cart here.
 
-    document.body.style.overflow = "hidden";
+       User can continue adding
+       multiple food items.
+    */
+
 }
 
 
@@ -89,80 +100,102 @@ function addToCart(name, price) {
 
 function updateCart() {
 
-    // Calculate total number of items
     let totalItems = 0;
+    let totalPrice = 0;
+
 
     cart.forEach(item => {
+
         totalItems += item.quantity;
+
+        totalPrice +=
+            item.price * item.quantity;
+
     });
+
 
     cartCount.textContent = totalItems;
 
+    cartTotal.textContent =
+        `₹${totalPrice}`;
 
-    // Empty cart
+
+    /* EMPTY CART */
+
     if (cart.length === 0) {
 
         cartItems.innerHTML = `
             <div class="empty-cart">
+
                 <div>🛒</div>
+
                 <h3>Your cart is empty</h3>
+
                 <p>
-                    Add something delicious from
-                    the menu.
+                    Add something delicious
+                    from the menu.
                 </p>
+
             </div>
         `;
-
-        cartTotal.textContent = "₹0";
 
         return;
     }
 
 
-    // Generate cart items
+    /* CART ITEMS */
+
     cartItems.innerHTML = "";
+
 
     cart.forEach((item, index) => {
 
-        const itemTotal = item.price * item.quantity;
+        const itemTotal =
+            item.price * item.quantity;
 
-        const cartItem = document.createElement("div");
 
-        cartItem.className = "cart-product";
+        const cartItem =
+            document.createElement("div");
+
+
+        cartItem.className =
+            "cart-product";
+
 
         cartItem.innerHTML = `
+
             <div style="
                 padding: 16px 0;
                 border-bottom: 1px solid #eeeeeb;
             ">
 
                 <div style="
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: flex-start;
-                    gap: 15px;
+                    display:flex;
+                    justify-content:space-between;
+                    gap:15px;
                 ">
 
                     <div>
+
                         <strong style="
-                            font-size: 14px;
-                            display: block;
-                            margin-bottom: 4px;
+                            display:block;
+                            font-size:14px;
+                            margin-bottom:4px;
                         ">
                             ${item.name}
                         </strong>
 
                         <span style="
-                            color: #888;
-                            font-size: 11px;
+                            color:#888;
+                            font-size:11px;
                         ">
                             ₹${item.price} each
                         </span>
+
                     </div>
 
-                    <strong style="
-                        font-size: 14px;
-                    ">
+
+                    <strong>
                         ₹${itemTotal}
                     </strong>
 
@@ -170,50 +203,50 @@ function updateCart() {
 
 
                 <div style="
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    margin-top: 13px;
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:center;
+                    margin-top:13px;
                 ">
 
                     <div style="
-                        display: flex;
-                        align-items: center;
-                        gap: 10px;
+                        display:flex;
+                        align-items:center;
+                        gap:10px;
                     ">
 
                         <button
                             onclick="changeQuantity(${index}, -1)"
                             style="
-                                width: 28px;
-                                height: 28px;
-                                border: 1px solid #ddd;
-                                border-radius: 6px;
-                                background: white;
-                                cursor: pointer;
+                                width:28px;
+                                height:28px;
+                                border:1px solid #ddd;
+                                border-radius:6px;
+                                background:white;
                             "
                         >
                             −
                         </button>
 
+
                         <span style="
-                            font-size: 13px;
-                            font-weight: 700;
-                            min-width: 15px;
-                            text-align: center;
+                            min-width:15px;
+                            text-align:center;
+                            font-weight:700;
+                            font-size:13px;
                         ">
                             ${item.quantity}
                         </span>
 
+
                         <button
                             onclick="changeQuantity(${index}, 1)"
                             style="
-                                width: 28px;
-                                height: 28px;
-                                border: 1px solid #ddd;
-                                border-radius: 6px;
-                                background: white;
-                                cursor: pointer;
+                                width:28px;
+                                height:28px;
+                                border:1px solid #ddd;
+                                border-radius:6px;
+                                background:white;
                             "
                         >
                             +
@@ -225,11 +258,10 @@ function updateCart() {
                     <button
                         onclick="removeFromCart(${index})"
                         style="
-                            border: none;
-                            background: transparent;
-                            color: #999;
-                            font-size: 11px;
-                            cursor: pointer;
+                            border:none;
+                            background:none;
+                            color:#999;
+                            font-size:11px;
                         "
                     >
                         Remove
@@ -238,20 +270,14 @@ function updateCart() {
                 </div>
 
             </div>
+
         `;
 
+
         cartItems.appendChild(cartItem);
+
     });
 
-
-    // Calculate total price
-    let total = 0;
-
-    cart.forEach(item => {
-        total += item.price * item.quantity;
-    });
-
-    cartTotal.textContent = `₹${total}`;
 }
 
 
@@ -263,16 +289,21 @@ function changeQuantity(index, amount) {
 
     cart[index].quantity += amount;
 
+
     if (cart[index].quantity <= 0) {
+
         cart.splice(index, 1);
+
     }
 
+
     updateCart();
+
 }
 
 
 /* =========================================
-   REMOVE FROM CART
+   REMOVE ITEM
    ========================================= */
 
 function removeFromCart(index) {
@@ -280,6 +311,7 @@ function removeFromCart(index) {
     cart.splice(index, 1);
 
     updateCart();
+
 }
 
 
@@ -287,26 +319,37 @@ function removeFromCart(index) {
    SEARCH
    ========================================= */
 
-searchInput.addEventListener("input", function () {
+searchInput.addEventListener(
+    "input",
+    function () {
 
-    const searchValue = searchInput.value
-        .toLowerCase()
-        .trim();
+        const value =
+            searchInput.value
+            .toLowerCase()
+            .trim();
 
-    foodCards.forEach(card => {
 
-        const foodName =
-            card.dataset.name.toLowerCase();
+        foodCards.forEach(card => {
 
-        if (foodName.includes(searchValue)) {
-            card.style.display = "";
-        } else {
-            card.style.display = "none";
-        }
+            const name =
+                card.dataset.name
+                .toLowerCase();
 
-    });
 
-});
+            if (name.includes(value)) {
+
+                card.style.display = "";
+
+            } else {
+
+                card.style.display = "none";
+
+            }
+
+        });
+
+    }
+);
 
 
 /* =========================================
@@ -315,99 +358,486 @@ searchInput.addEventListener("input", function () {
 
 categoryButtons.forEach(button => {
 
-    button.addEventListener("click", function () {
+    button.addEventListener(
+        "click",
+        function () {
 
-        // Remove active state
-        categoryButtons.forEach(btn => {
-            btn.classList.remove("active");
-        });
+            categoryButtons.forEach(btn => {
 
-        // Add active state
-        button.classList.add("active");
+                btn.classList.remove("active");
 
-        const selectedCategory =
-            button.dataset.category;
+            });
 
 
-        foodCards.forEach(card => {
-
-            const cardCategory =
-                card.dataset.category;
-
-            if (
-                selectedCategory === "all" ||
-                cardCategory === selectedCategory
-            ) {
-                card.style.display = "";
-            } else {
-                card.style.display = "none";
-            }
-
-        });
-
-    });
-
-});
+            button.classList.add("active");
 
 
-/* =========================================
-   CHECKOUT
-   ========================================= */
-
-checkoutButton.addEventListener("click", function () {
-
-    if (cart.length === 0) {
-
-        alert(
-            "Your cart is empty. Please add an item first."
-        );
-
-        return;
-    }
+            const category =
+                button.dataset.category;
 
 
-    alert(
-        "Checkout system is ready for the next stage!"
+            foodCards.forEach(card => {
+
+                const cardCategory =
+                    card.dataset.category;
+
+
+                if (
+                    category === "all" ||
+                    cardCategory === category
+                ) {
+
+                    card.style.display = "";
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+            });
+
+        }
     );
 
 });
 
 
 /* =========================================
-   NAVIGATION
+   PLACE ORDER
    ========================================= */
 
-document.querySelectorAll('a[href^="#"]').forEach(link => {
+checkoutButton.addEventListener(
+    "click",
+    function () {
 
-    link.addEventListener("click", function (event) {
+        if (cart.length === 0) {
 
-        const targetId =
-            this.getAttribute("href");
+            alert(
+                "Your cart is empty. Please add food items first."
+            );
 
-        if (targetId === "#") {
             return;
-        }
-
-        const target =
-            document.querySelector(targetId);
-
-        if (target) {
-
-            event.preventDefault();
-
-            target.scrollIntoView({
-                behavior: "smooth"
-            });
 
         }
 
-    });
 
-});
+        openCheckout();
+
+    }
+);
 
 
 /* =========================================
-   INITIAL STATE
+   CHECKOUT SCREEN
+   ========================================= */
+
+function openCheckout() {
+
+    closeCartPanel();
+
+
+    const checkoutScreen =
+        document.createElement("div");
+
+
+    checkoutScreen.id =
+        "checkoutScreen";
+
+
+    checkoutScreen.innerHTML = `
+
+        <div class="checkout-container">
+
+            <button
+                class="checkout-back"
+                onclick="closeCheckout()"
+            >
+                ← Back to menu
+            </button>
+
+
+            <div class="checkout-header">
+
+                <span class="section-label">
+                    CHECKOUT
+                </span>
+
+                <h1>
+                    Complete your
+                    <span>order.</span>
+                </h1>
+
+                <p>
+                    Choose your pickup time and
+                    payment method.
+                </p>
+
+            </div>
+
+
+            <div class="checkout-grid">
+
+
+                <!-- ORDER SUMMARY -->
+
+                <div class="checkout-card">
+
+                    <h2>Order summary</h2>
+
+                    <div
+                        id="checkoutItems"
+                        class="checkout-items"
+                    ></div>
+
+
+                    <div class="checkout-total">
+
+                        <span>Total</span>
+
+                        <strong id="checkoutTotal">
+                            ₹0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ORDER DETAILS -->
+
+                <div class="checkout-card">
+
+                    <h2>Pickup details</h2>
+
+
+                    <label>
+                        Pickup time
+                    </label>
+
+
+                    <select id="pickupTime">
+
+                        <option value="">
+                            Select pickup time
+                        </option>
+
+                        <option>
+                            12:30 PM – 12:45 PM
+                        </option>
+
+                        <option>
+                            12:45 PM – 1:00 PM
+                        </option>
+
+                        <option>
+                            1:00 PM – 1:15 PM
+                        </option>
+
+                        <option>
+                            1:15 PM – 1:30 PM
+                        </option>
+
+                        <option>
+                            1:30 PM – 1:45 PM
+                        </option>
+
+                    </select>
+
+
+                    <label>
+                        Payment method
+                    </label>
+
+
+                    <div class="payment-options">
+
+                        <label class="payment-option">
+
+                            <input
+                                type="radio"
+                                name="payment"
+                                value="upi"
+                            >
+
+                            <span>
+                                UPI
+                            </span>
+
+                        </label>
+
+
+                        <label class="payment-option">
+
+                            <input
+                                type="radio"
+                                name="payment"
+                                value="cash"
+                            >
+
+                            <span>
+                                Pay at canteen
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <button
+                        class="place-order-button"
+                        onclick="confirmOrder()"
+                    >
+                        Place Order
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    document.body.appendChild(checkoutScreen);
+
+
+    renderCheckoutItems();
+
+}
+
+
+/* =========================================
+   CHECKOUT ITEMS
+   ========================================= */
+
+function renderCheckoutItems() {
+
+    const container =
+        document.getElementById(
+            "checkoutItems"
+        );
+
+
+    const totalElement =
+        document.getElementById(
+            "checkoutTotal"
+        );
+
+
+    let total = 0;
+
+
+    container.innerHTML = "";
+
+
+    cart.forEach(item => {
+
+        const itemTotal =
+            item.price * item.quantity;
+
+
+        total += itemTotal;
+
+
+        container.innerHTML += `
+
+            <div class="checkout-item">
+
+                <div>
+
+                    <strong>
+                        ${item.name}
+                    </strong>
+
+                    <span>
+                        Qty ${item.quantity}
+                    </span>
+
+                </div>
+
+                <strong>
+                    ₹${itemTotal}
+                </strong>
+
+            </div>
+
+        `;
+
+    });
+
+
+    totalElement.textContent =
+        `₹${total}`;
+
+}
+
+
+/* =========================================
+   CONFIRM ORDER
+   ========================================= */
+
+function confirmOrder() {
+
+    const pickup =
+        document.getElementById(
+            "pickupTime"
+        ).value;
+
+
+    const payment =
+        document.querySelector(
+            'input[name="payment"]:checked'
+        );
+
+
+    if (!pickup) {
+
+        alert(
+            "Please select a pickup time."
+        );
+
+        return;
+
+    }
+
+
+    if (!payment) {
+
+        alert(
+            "Please select a payment method."
+        );
+
+        return;
+
+    }
+
+
+    const orderNumber =
+        Math.floor(
+            1000 + Math.random() * 9000
+        );
+
+
+    const paymentText =
+        payment.value === "upi"
+            ? "UPI"
+            : "Pay at Canteen";
+
+
+    document.getElementById(
+        "checkoutScreen"
+    ).innerHTML = `
+
+        <div class="order-success">
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+
+            <span class="section-label">
+                ORDER CONFIRMED
+            </span>
+
+
+            <h1>
+                Your order is
+                <span>confirmed.</span>
+            </h1>
+
+
+            <p>
+                Order #CG${orderNumber}
+                has been placed successfully.
+            </p>
+
+
+            <div class="success-card">
+
+                <div>
+                    <span>
+                        Pickup time
+                    </span>
+
+                    <strong>
+                        ${pickup}
+                    </strong>
+                </div>
+
+
+                <div>
+                    <span>
+                        Payment
+                    </span>
+
+                    <strong>
+                        ${paymentText}
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <button
+                class="back-home-button"
+                onclick="finishOrder()"
+            >
+                Back to Menu
+            </button>
+
+        </div>
+
+    `;
+
+
+    cart = [];
+
+    updateCart();
+
+}
+
+
+/* =========================================
+   CLOSE CHECKOUT
+   ========================================= */
+
+function closeCheckout() {
+
+    const screen =
+        document.getElementById(
+            "checkoutScreen"
+        );
+
+
+    if (screen) {
+
+        screen.remove();
+
+    }
+
+}
+
+
+/* =========================================
+   FINISH ORDER
+   ========================================= */
+
+function finishOrder() {
+
+    closeCheckout();
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =========================================
+   INITIALIZE
    ========================================= */
 
 updateCart();
