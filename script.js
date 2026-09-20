@@ -1,5 +1,5 @@
 /* =========================================
-   CANTEENGO — ORDERING SYSTEM
+   CANTEENGO — COMPLETE ORDER SYSTEM
    ========================================= */
 
 let cart = [];
@@ -20,10 +20,7 @@ const cartTotal = document.getElementById("cartTotal");
 
 const searchInput = document.getElementById("searchInput");
 const foodCards = document.querySelectorAll(".food-card");
-
 const categoryButtons = document.querySelectorAll(".category");
-
-const checkoutButton = document.getElementById("checkoutButton");
 
 
 /* =========================================
@@ -53,9 +50,17 @@ function closeCartPanel() {
 
 }
 
-closeCart.addEventListener("click", closeCartPanel);
 
-cartOverlay.addEventListener("click", closeCartPanel);
+closeCart.addEventListener(
+    "click",
+    closeCartPanel
+);
+
+
+cartOverlay.addEventListener(
+    "click",
+    closeCartPanel
+);
 
 
 /* =========================================
@@ -64,12 +69,13 @@ cartOverlay.addEventListener("click", closeCartPanel);
 
 function addToCart(name, price) {
 
-    const existingItem =
+    const existing =
         cart.find(item => item.name === name);
 
-    if (existingItem) {
 
-        existingItem.quantity += 1;
+    if (existing) {
+
+        existing.quantity += 1;
 
     } else {
 
@@ -81,15 +87,8 @@ function addToCart(name, price) {
 
     }
 
+
     updateCart();
-
-    /*
-       IMPORTANT:
-       We DO NOT open the cart here.
-
-       User can continue adding
-       multiple food items.
-    */
 
 }
 
@@ -100,36 +99,41 @@ function addToCart(name, price) {
 
 function updateCart() {
 
-    let totalItems = 0;
-    let totalPrice = 0;
+    let itemCount = 0;
+    let total = 0;
 
 
     cart.forEach(item => {
 
-        totalItems += item.quantity;
+        itemCount += item.quantity;
 
-        totalPrice +=
+        total +=
             item.price * item.quantity;
 
     });
 
 
-    cartCount.textContent = totalItems;
+    cartCount.textContent =
+        itemCount;
+
 
     cartTotal.textContent =
-        `₹${totalPrice}`;
+        `₹${total}`;
 
 
-    /* EMPTY CART */
+    /* EMPTY */
 
     if (cart.length === 0) {
 
         cartItems.innerHTML = `
+
             <div class="empty-cart">
 
                 <div>🛒</div>
 
-                <h3>Your cart is empty</h3>
+                <h3>
+                    Your cart is empty
+                </h3>
 
                 <p>
                     Add something delicious
@@ -137,13 +141,15 @@ function updateCart() {
                 </p>
 
             </div>
+
         `;
 
         return;
+
     }
 
 
-    /* CART ITEMS */
+    /* ITEMS */
 
     cartItems.innerHTML = "";
 
@@ -154,25 +160,21 @@ function updateCart() {
             item.price * item.quantity;
 
 
-        const cartItem =
+        const element =
             document.createElement("div");
 
 
-        cartItem.className =
-            "cart-product";
-
-
-        cartItem.innerHTML = `
+        element.innerHTML = `
 
             <div style="
-                padding: 16px 0;
-                border-bottom: 1px solid #eeeeeb;
+                padding:16px 0;
+                border-bottom:1px solid #eeeeeb;
             ">
 
                 <div style="
                     display:flex;
                     justify-content:space-between;
-                    gap:15px;
+                    align-items:flex-start;
                 ">
 
                     <div>
@@ -180,13 +182,12 @@ function updateCart() {
                         <strong style="
                             display:block;
                             font-size:14px;
-                            margin-bottom:4px;
                         ">
                             ${item.name}
                         </strong>
 
                         <span style="
-                            color:#888;
+                            color:#999;
                             font-size:11px;
                         ">
                             ₹${item.price} each
@@ -195,7 +196,9 @@ function updateCart() {
                     </div>
 
 
-                    <strong>
+                    <strong style="
+                        font-size:14px;
+                    ">
                         ₹${itemTotal}
                     </strong>
 
@@ -204,10 +207,11 @@ function updateCart() {
 
                 <div style="
                     display:flex;
-                    justify-content:space-between;
                     align-items:center;
-                    margin-top:13px;
+                    justify-content:space-between;
+                    margin-top:12px;
                 ">
+
 
                     <div style="
                         display:flex;
@@ -215,42 +219,39 @@ function updateCart() {
                         gap:10px;
                     ">
 
+
                         <button
                             onclick="changeQuantity(${index}, -1)"
                             style="
-                                width:28px;
-                                height:28px;
+                                width:30px;
+                                height:30px;
                                 border:1px solid #ddd;
-                                border-radius:6px;
                                 background:white;
+                                border-radius:6px;
                             "
                         >
                             −
                         </button>
 
 
-                        <span style="
-                            min-width:15px;
-                            text-align:center;
-                            font-weight:700;
-                            font-size:13px;
-                        ">
+                        <strong>
                             ${item.quantity}
-                        </span>
+                        </strong>
 
 
                         <button
                             onclick="changeQuantity(${index}, 1)"
                             style="
-                                width:28px;
-                                height:28px;
+                                width:30px;
+                                height:30px;
                                 border:1px solid #ddd;
-                                border-radius:6px;
                                 background:white;
+                                border-radius:6px;
                             "
                         >
                             +
                         </button>
+
 
                     </div>
 
@@ -267,6 +268,7 @@ function updateCart() {
                         Remove
                     </button>
 
+
                 </div>
 
             </div>
@@ -274,15 +276,92 @@ function updateCart() {
         `;
 
 
-        cartItems.appendChild(cartItem);
+        cartItems.appendChild(element);
 
     });
+
+
+    /* MAKE SURE CHECKOUT BUTTON EXISTS */
+
+    createCheckoutButton();
 
 }
 
 
 /* =========================================
-   CHANGE QUANTITY
+   CREATE CHECKOUT BUTTON
+   ========================================= */
+
+function createCheckoutButton() {
+
+    const footer =
+        document.querySelector(".cart-footer");
+
+
+    if (!footer) {
+        return;
+    }
+
+
+    footer.innerHTML = `
+
+        <div class="cart-total">
+
+            <span>
+                Total
+            </span>
+
+            <strong id="cartTotal">
+                ₹${calculateTotal()}
+            </strong>
+
+        </div>
+
+
+        <button
+            id="checkoutButton"
+            class="checkout-button"
+        >
+            Proceed to checkout
+        </button>
+
+    `;
+
+
+    document
+        .getElementById("checkoutButton")
+        .addEventListener(
+            "click",
+            openCheckout
+        );
+
+}
+
+
+/* =========================================
+   CALCULATE TOTAL
+   ========================================= */
+
+function calculateTotal() {
+
+    let total = 0;
+
+
+    cart.forEach(item => {
+
+        total +=
+            item.price * item.quantity;
+
+    });
+
+
+    return total;
+
+}
+
+
+/* =========================================
+   QUANTITY
    ========================================= */
 
 function changeQuantity(index, amount) {
@@ -303,7 +382,7 @@ function changeQuantity(index, amount) {
 
 
 /* =========================================
-   REMOVE ITEM
+   REMOVE
    ========================================= */
 
 function removeFromCart(index) {
@@ -336,15 +415,10 @@ searchInput.addEventListener(
                 .toLowerCase();
 
 
-            if (name.includes(value)) {
-
-                card.style.display = "";
-
-            } else {
-
-                card.style.display = "none";
-
-            }
+            card.style.display =
+                name.includes(value)
+                    ? ""
+                    : "none";
 
         });
 
@@ -362,6 +436,7 @@ categoryButtons.forEach(button => {
         "click",
         function () {
 
+
             categoryButtons.forEach(btn => {
 
                 btn.classList.remove("active");
@@ -372,19 +447,19 @@ categoryButtons.forEach(button => {
             button.classList.add("active");
 
 
-            const category =
+            const selected =
                 button.dataset.category;
 
 
             foodCards.forEach(card => {
 
-                const cardCategory =
+                const category =
                     card.dataset.category;
 
 
                 if (
-                    category === "all" ||
-                    cardCategory === category
+                    selected === "all" ||
+                    selected === category
                 ) {
 
                     card.style.display = "";
@@ -404,50 +479,48 @@ categoryButtons.forEach(button => {
 
 
 /* =========================================
-   PLACE ORDER
-   ========================================= */
-
-checkoutButton.addEventListener(
-    "click",
-    function () {
-
-        if (cart.length === 0) {
-
-            alert(
-                "Your cart is empty. Please add food items first."
-            );
-
-            return;
-
-        }
-
-
-        openCheckout();
-
-    }
-);
-
-
-/* =========================================
-   CHECKOUT SCREEN
+   OPEN CHECKOUT
    ========================================= */
 
 function openCheckout() {
 
+    if (cart.length === 0) {
+
+        alert(
+            "Please add at least one item."
+        );
+
+        return;
+
+    }
+
+
     closeCartPanel();
 
 
-    const checkoutScreen =
+    const old =
+        document.getElementById(
+            "checkoutScreen"
+        );
+
+
+    if (old) {
+        old.remove();
+    }
+
+
+    const screen =
         document.createElement("div");
 
 
-    checkoutScreen.id =
+    screen.id =
         "checkoutScreen";
 
 
-    checkoutScreen.innerHTML = `
+    screen.innerHTML = `
 
         <div class="checkout-container">
+
 
             <button
                 class="checkout-back"
@@ -463,17 +536,21 @@ function openCheckout() {
                     CHECKOUT
                 </span>
 
+
                 <h1>
                     Complete your
                     <span>order.</span>
                 </h1>
 
+
                 <p>
-                    Choose your pickup time and
-                    payment method.
+                    Review your order,
+                    choose pickup time
+                    and select payment.
                 </p>
 
             </div>
+
 
 
             <div class="checkout-grid">
@@ -483,7 +560,10 @@ function openCheckout() {
 
                 <div class="checkout-card">
 
-                    <h2>Order summary</h2>
+                    <h2>
+                        Order summary
+                    </h2>
+
 
                     <div
                         id="checkoutItems"
@@ -493,9 +573,14 @@ function openCheckout() {
 
                     <div class="checkout-total">
 
-                        <span>Total</span>
+                        <span>
+                            Total
+                        </span>
 
-                        <strong id="checkoutTotal">
+
+                        <strong
+                            id="checkoutTotal"
+                        >
                             ₹0
                         </strong>
 
@@ -504,11 +589,14 @@ function openCheckout() {
                 </div>
 
 
-                <!-- ORDER DETAILS -->
+
+                <!-- PAYMENT / PICKUP -->
 
                 <div class="checkout-card">
 
-                    <h2>Pickup details</h2>
+                    <h2>
+                        Pickup & Payment
+                    </h2>
 
 
                     <label>
@@ -516,30 +604,32 @@ function openCheckout() {
                     </label>
 
 
-                    <select id="pickupTime">
+                    <select
+                        id="pickupTime"
+                    >
 
                         <option value="">
                             Select pickup time
                         </option>
 
                         <option>
-                            12:30 PM – 12:45 PM
+                            12:30 PM – 12:50 PM
                         </option>
 
                         <option>
-                            12:45 PM – 1:00 PM
+                            12:50 PM – 1:10 PM
                         </option>
 
                         <option>
-                            1:00 PM – 1:15 PM
+                            1:10 PM – 1:30 PM
                         </option>
 
                         <option>
-                            1:15 PM – 1:30 PM
+                            1:30 PM – 1:50 PM
                         </option>
 
                         <option>
-                            1:30 PM – 1:45 PM
+                            1:50 PM – 2:10 PM
                         </option>
 
                     </select>
@@ -552,7 +642,10 @@ function openCheckout() {
 
                     <div class="payment-options">
 
-                        <label class="payment-option">
+
+                        <label
+                            class="payment-option"
+                        >
 
                             <input
                                 type="radio"
@@ -567,7 +660,9 @@ function openCheckout() {
                         </label>
 
 
-                        <label class="payment-option">
+                        <label
+                            class="payment-option"
+                        >
 
                             <input
                                 type="radio"
@@ -581,6 +676,7 @@ function openCheckout() {
 
                         </label>
 
+
                     </div>
 
 
@@ -591,7 +687,9 @@ function openCheckout() {
                         Place Order
                     </button>
 
+
                 </div>
+
 
             </div>
 
@@ -600,7 +698,7 @@ function openCheckout() {
     `;
 
 
-    document.body.appendChild(checkoutScreen);
+    document.body.appendChild(screen);
 
 
     renderCheckoutItems();
@@ -626,10 +724,10 @@ function renderCheckoutItems() {
         );
 
 
-    let total = 0;
-
-
     container.innerHTML = "";
+
+
+    let total = 0;
 
 
     cart.forEach(item => {
@@ -656,6 +754,7 @@ function renderCheckoutItems() {
                     </span>
 
                 </div>
+
 
                 <strong>
                     ₹${itemTotal}
@@ -720,7 +819,7 @@ function confirmOrder() {
         );
 
 
-    const paymentText =
+    const paymentName =
         payment.value === "upi"
             ? "UPI"
             : "Pay at Canteen";
@@ -731,6 +830,7 @@ function confirmOrder() {
     ).innerHTML = `
 
         <div class="order-success">
+
 
             <div class="success-icon">
                 ✓
@@ -756,7 +856,9 @@ function confirmOrder() {
 
             <div class="success-card">
 
+
                 <div>
+
                     <span>
                         Pickup time
                     </span>
@@ -764,18 +866,22 @@ function confirmOrder() {
                     <strong>
                         ${pickup}
                     </strong>
+
                 </div>
 
 
                 <div>
+
                     <span>
                         Payment
                     </span>
 
                     <strong>
-                        ${paymentText}
+                        ${paymentName}
                     </strong>
+
                 </div>
+
 
             </div>
 
@@ -786,6 +892,7 @@ function confirmOrder() {
             >
                 Back to Menu
             </button>
+
 
         </div>
 
@@ -821,12 +928,13 @@ function closeCheckout() {
 
 
 /* =========================================
-   FINISH ORDER
+   FINISH
    ========================================= */
 
 function finishOrder() {
 
     closeCheckout();
+
 
     window.scrollTo({
         top: 0,
@@ -837,7 +945,53 @@ function finishOrder() {
 
 
 /* =========================================
-   INITIALIZE
+   SMOOTH NAVIGATION
+   ========================================= */
+
+document
+    .querySelectorAll(
+        'a[href^="#"]'
+    )
+    .forEach(link => {
+
+        link.addEventListener(
+            "click",
+            function(event) {
+
+                const id =
+                    this.getAttribute(
+                        "href"
+                    );
+
+
+                if (id === "#") {
+                    return;
+                }
+
+
+                const target =
+                    document.querySelector(id);
+
+
+                if (target) {
+
+                    event.preventDefault();
+
+
+                    target.scrollIntoView({
+                        behavior: "smooth"
+                    });
+
+                }
+
+            }
+        );
+
+    });
+
+
+/* =========================================
+   START
    ========================================= */
 
 updateCart();
