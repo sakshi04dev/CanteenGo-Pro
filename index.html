@@ -1,218 +1,427 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>CanteenGo | Smart Campus Food Ordering</title>
 
-    <meta name="description"
-        content="CanteenGo - Smart and convenient food ordering for your college campus.">
+    <meta
+        name="description"
+        content="CanteenGo - Smart and convenient food ordering for your college campus."
+    >
 
     <link rel="stylesheet" href="style.css">
+
 </head>
+
 
 <body>
 
-    <!-- NAVBAR -->
+
+    <!-- ================================
+         NAVBAR
+    ================================= -->
+
     <header class="navbar">
+
         <div class="nav-container">
 
-            <a href="#" class="logo">
-                <span class="logo-mark">CG</span>
-                <span class="logo-text">Canteen<span>Go</span></span>
+
+            <a href="#home" class="logo">
+
+                <span class="logo-mark">
+                    CG
+                </span>
+
+                <span class="logo-text">
+                    Canteen<span>Go</span>
+                </span>
+
             </a>
 
+
             <nav class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#menu">Menu</a>
-                <a href="#how-it-works">How It Works</a>
-                <a href="#about">About</a>
+
+                <a href="#home">
+                    Home
+                </a>
+
+                <a href="#menu">
+                    Menu
+                </a>
+
+                <a href="#how-it-works">
+                    How It Works
+                </a>
+
+                <a href="#about">
+                    About
+                </a>
+
             </nav>
 
+
             <div class="nav-actions">
-                <button class="cart-button" id="cartButton">
+
+                <button
+                    class="cart-button"
+                    id="cartButton"
+                >
+
                     Cart
-                    <span class="cart-count" id="cartCount">0</span>
+
+                    <span
+                        class="cart-count"
+                        id="cartCount"
+                    >
+                        0
+                    </span>
+
                 </button>
+
             </div>
 
         </div>
+
     </header>
 
 
-    <!-- HERO SECTION -->
+
+    <!-- ================================
+         MAIN
+    ================================= -->
+
     <main>
 
-        <section class="hero" id="home">
+
+        <!-- ================================
+             HERO
+        ================================= -->
+
+        <section
+            class="hero"
+            id="home"
+        >
 
             <div class="hero-container">
 
+
                 <div class="hero-content">
 
+
                     <div class="hero-badge">
+
                         <span class="status-dot"></span>
+
                         Campus ordering made simple
+
                     </div>
 
+
                     <h1>
+
                         Your campus food,
                         <span>your way.</span>
+
                     </h1>
 
+
                     <p>
+
                         Skip the queue. Browse your canteen menu,
                         order ahead and pick up your food when it's ready.
+
                     </p>
 
+
                     <div class="hero-buttons">
-                        <a href="#menu" class="primary-button">
+
+                        <a
+                            href="#menu"
+                            class="primary-button"
+                        >
                             Explore Menu
                         </a>
 
-                        <a href="#how-it-works" class="secondary-button">
+
+                        <a
+                            href="#how-it-works"
+                            class="secondary-button"
+                        >
                             How it works
                         </a>
+
                     </div>
+
+
 
                     <div class="hero-stats">
 
-                        <div class="stat">
-                            <strong>10+</strong>
-                            <span>Menu Items</span>
-                        </div>
 
                         <div class="stat">
-                            <strong>5 min</strong>
-                            <span>Avg. Preparation</span>
+
+                            <strong>
+                                10+
+                            </strong>
+
+                            <span>
+                                Menu Items
+                            </span>
+
                         </div>
 
+
+
                         <div class="stat">
-                            <strong>1 app</strong>
-                            <span>Simple Ordering</span>
+
+                            <strong>
+                                15–20 min
+                            </strong>
+
+                            <span>
+                                Avg. Preparation
+                            </span>
+
                         </div>
+
+
+
+                        <div class="stat">
+
+                            <strong>
+                                1 app
+                            </strong>
+
+                            <span>
+                                Simple Ordering
+                            </span>
+
+                        </div>
+
 
                     </div>
 
+
                 </div>
 
+
+
+                <!-- PROFESSIONAL HERO CARD -->
 
                 <div class="hero-visual">
 
-                    <div class="order-card">
 
-                        <div class="order-header">
+                    <div class="campus-card">
+
+
+                        <div class="campus-card-top">
+
+                            <span class="campus-card-label">
+                                CANTEENGO
+                            </span>
+
+
+                            <span class="campus-card-status">
+                                OPEN
+                            </span>
+
+                        </div>
+
+
+
+                        <div class="campus-card-content">
+
+
+                            <div class="campus-icon">
+                                CG
+                            </div>
+
+
+                            <h3>
+                                Order ahead.
+                                Pick up fresh.
+                            </h3>
+
+
+                            <p>
+                                Your food is prepared fresh
+                                when you place your order.
+                            </p>
+
+
+                        </div>
+
+
+
+                        <div class="campus-card-info">
+
+
                             <div>
-                                <span class="small-label">CURRENT ORDER</span>
-                                <h3>Order #CG1024</h3>
+
+                                <strong>
+                                    15–20 min
+                                </strong>
+
+                                <span>
+                                    Avg. preparation
+                                </span>
+
                             </div>
 
-                            <span class="order-status">Preparing</span>
-                        </div>
 
-                        <div class="order-item">
-                            <div class="food-placeholder">🍔</div>
+                            <div>
 
-                            <div class="order-item-info">
-                                <strong>Veg Burger</strong>
-                                <span>Qty 1</span>
+                                <strong>
+                                    Easy
+                                </strong>
+
+                                <span>
+                                    Online ordering
+                                </span>
+
                             </div>
 
-                            <strong>₹80</strong>
+
                         </div>
 
-                        <div class="order-item">
-                            <div class="food-placeholder">🥤</div>
-
-                            <div class="order-item-info">
-                                <strong>Cold Coffee</strong>
-                                <span>Qty 1</span>
-                            </div>
-
-                            <strong>₹60</strong>
-                        </div>
-
-                        <div class="order-total">
-                            <span>Total</span>
-                            <strong>₹140</strong>
-                        </div>
-
-                        <div class="pickup-info">
-                            <span>Pickup</span>
-                            <strong>Today · 1:15 PM</strong>
-                        </div>
 
                     </div>
 
                 </div>
+
 
             </div>
 
         </section>
 
 
-        <!-- MENU SECTION -->
-        <section class="menu-section" id="menu">
+
+        <!-- ================================
+             MENU
+        ================================= -->
+
+        <section
+            class="menu-section"
+            id="menu"
+        >
 
             <div class="section-container">
 
+
                 <div class="section-heading">
 
+
                     <div>
-                        <span class="section-label">OUR MENU</span>
+
+                        <span class="section-label">
+                            OUR MENU
+                        </span>
+
 
                         <h2>
+
                             What are you
                             <span>craving?</span>
+
                         </h2>
+
                     </div>
 
+
                     <p>
+
                         Freshly prepared favourites,
                         available right on your campus.
+
                     </p>
+
 
                 </div>
 
 
-                <!-- SEARCH -->
+
+                <!-- SEARCH + CATEGORIES -->
+
                 <div class="menu-controls">
 
+
                     <div class="search-box">
-                        <span>⌕</span>
+
+                        <span>
+                            ⌕
+                        </span>
+
 
                         <input
                             type="text"
                             id="searchInput"
                             placeholder="Search food..."
                         >
+
                     </div>
+
+
 
                     <div class="categories">
 
-                        <button class="category active" data-category="all">
+
+                        <button
+                            class="category active"
+                            data-category="all"
+                        >
                             All
                         </button>
 
-                        <button class="category" data-category="snacks">
+
+                        <button
+                            class="category"
+                            data-category="snacks"
+                        >
                             Snacks
                         </button>
 
-                        <button class="category" data-category="meals">
+
+                        <button
+                            class="category"
+                            data-category="meals"
+                        >
                             Meals
                         </button>
 
-                        <button class="category" data-category="drinks">
+
+                        <button
+                            class="category"
+                            data-category="drinks"
+                        >
                             Drinks
                         </button>
+
 
                     </div>
 
                 </div>
 
 
-                <!-- FOOD GRID -->
-                <div class="food-grid" id="foodGrid">
+
+                <!-- ================================
+                     FOOD GRID
+                ================================= -->
+
+                <div
+                    class="food-grid"
+                    id="foodGrid"
+                >
+
+
+
+                    <!-- BURGER -->
 
                     <article
                         class="food-card"
@@ -220,21 +429,38 @@
                         data-name="veg burger"
                     >
 
+
                         <div class="food-image burger">
-                            <span>🍔</span>
+
+                            <span>
+                                🍔
+                            </span>
+
                         </div>
+
 
                         <div class="food-info">
 
+
                             <div class="food-top">
-                                <h3>Veg Burger</h3>
-                                <span class="food-price">₹80</span>
+
+                                <h3>
+                                    Veg Burger
+                                </h3>
+
+
+                                <span class="food-price">
+                                    ₹80
+                                </span>
+
                             </div>
+
 
                             <p>
                                 Crispy patty, fresh vegetables
                                 and our signature sauce.
                             </p>
+
 
                             <button
                                 class="add-button"
@@ -243,10 +469,14 @@
                                 Add to cart
                             </button>
 
+
                         </div>
 
                     </article>
 
+
+
+                    <!-- SANDWICH -->
 
                     <article
                         class="food-card"
@@ -254,21 +484,38 @@
                         data-name="cheese sandwich"
                     >
 
+
                         <div class="food-image sandwich">
-                            <span>🥪</span>
+
+                            <span>
+                                🥪
+                            </span>
+
                         </div>
+
 
                         <div class="food-info">
 
+
                             <div class="food-top">
-                                <h3>Cheese Sandwich</h3>
-                                <span class="food-price">₹70</span>
+
+                                <h3>
+                                    Cheese Sandwich
+                                </h3>
+
+
+                                <span class="food-price">
+                                    ₹70
+                                </span>
+
                             </div>
+
 
                             <p>
                                 Grilled bread with melted cheese
                                 and fresh vegetables.
                             </p>
+
 
                             <button
                                 class="add-button"
@@ -277,10 +524,14 @@
                                 Add to cart
                             </button>
 
+
                         </div>
 
                     </article>
 
+
+
+                    <!-- PULAO -->
 
                     <article
                         class="food-card"
@@ -288,21 +539,38 @@
                         data-name="veg pulao"
                     >
 
+
                         <div class="food-image rice">
-                            <span>🍚</span>
+
+                            <span>
+                                🍚
+                            </span>
+
                         </div>
+
 
                         <div class="food-info">
 
+
                             <div class="food-top">
-                                <h3>Veg Pulao</h3>
-                                <span class="food-price">₹100</span>
+
+                                <h3>
+                                    Veg Pulao
+                                </h3>
+
+
+                                <span class="food-price">
+                                    ₹100
+                                </span>
+
                             </div>
+
 
                             <p>
                                 Aromatic rice cooked with
                                 seasonal vegetables and spices.
                             </p>
+
 
                             <button
                                 class="add-button"
@@ -311,10 +579,14 @@
                                 Add to cart
                             </button>
 
+
                         </div>
 
                     </article>
 
+
+
+                    <!-- MAGGI -->
 
                     <article
                         class="food-card"
@@ -322,21 +594,38 @@
                         data-name="masala maggi"
                     >
 
+
                         <div class="food-image noodles">
-                            <span>🍜</span>
+
+                            <span>
+                                🍜
+                            </span>
+
                         </div>
+
 
                         <div class="food-info">
 
+
                             <div class="food-top">
-                                <h3>Masala Maggi</h3>
-                                <span class="food-price">₹50</span>
+
+                                <h3>
+                                    Masala Maggi
+                                </h3>
+
+
+                                <span class="food-price">
+                                    ₹50
+                                </span>
+
                             </div>
 
+
                             <p>
-                                Hot noodles tossed with
-                                vegetables and Indian spices.
+                                Hot noodles tossed with vegetables
+                                and Indian spices.
                             </p>
+
 
                             <button
                                 class="add-button"
@@ -345,10 +634,14 @@
                                 Add to cart
                             </button>
 
+
                         </div>
 
                     </article>
 
+
+
+                    <!-- COFFEE -->
 
                     <article
                         class="food-card"
@@ -356,21 +649,38 @@
                         data-name="cold coffee"
                     >
 
+
                         <div class="food-image coffee">
-                            <span>☕</span>
+
+                            <span>
+                                ☕
+                            </span>
+
                         </div>
+
 
                         <div class="food-info">
 
+
                             <div class="food-top">
-                                <h3>Cold Coffee</h3>
-                                <span class="food-price">₹60</span>
+
+                                <h3>
+                                    Cold Coffee
+                                </h3>
+
+
+                                <span class="food-price">
+                                    ₹60
+                                </span>
+
                             </div>
+
 
                             <p>
                                 Chilled creamy coffee,
                                 perfect for a campus break.
                             </p>
+
 
                             <button
                                 class="add-button"
@@ -379,10 +689,14 @@
                                 Add to cart
                             </button>
 
+
                         </div>
 
                     </article>
 
+
+
+                    <!-- LIME SODA -->
 
                     <article
                         class="food-card"
@@ -390,21 +704,38 @@
                         data-name="fresh lime soda"
                     >
 
+
                         <div class="food-image lime">
-                            <span>🥤</span>
+
+                            <span>
+                                🥤
+                            </span>
+
                         </div>
+
 
                         <div class="food-info">
 
+
                             <div class="food-top">
-                                <h3>Fresh Lime Soda</h3>
-                                <span class="food-price">₹40</span>
+
+                                <h3>
+                                    Fresh Lime Soda
+                                </h3>
+
+
+                                <span class="food-price">
+                                    ₹40
+                                </span>
+
                             </div>
+
 
                             <p>
                                 Refreshing lime drink
                                 served chilled.
                             </p>
+
 
                             <button
                                 class="add-button"
@@ -413,9 +744,11 @@
                                 Add to cart
                             </button>
 
+
                         </div>
 
                     </article>
+
 
                 </div>
 
@@ -424,10 +757,18 @@
         </section>
 
 
-        <!-- HOW IT WORKS -->
-        <section class="steps-section" id="how-it-works">
+
+        <!-- ================================
+             HOW IT WORKS
+        ================================= -->
+
+        <section
+            class="steps-section"
+            id="how-it-works"
+        >
 
             <div class="section-container">
+
 
                 <div class="center-heading">
 
@@ -435,21 +776,32 @@
                         HOW IT WORKS
                     </span>
 
+
                     <h2>
+
                         Order in
                         <span>three simple steps.</span>
+
                     </h2>
 
                 </div>
 
 
+
                 <div class="steps-grid">
+
 
                     <div class="step-card">
 
-                        <div class="step-number">01</div>
+                        <div class="step-number">
+                            01
+                        </div>
 
-                        <h3>Choose your food</h3>
+
+                        <h3>
+                            Choose your food
+                        </h3>
+
 
                         <p>
                             Browse the canteen menu and
@@ -459,11 +811,18 @@
                     </div>
 
 
+
                     <div class="step-card">
 
-                        <div class="step-number">02</div>
+                        <div class="step-number">
+                            02
+                        </div>
 
-                        <h3>Place your order</h3>
+
+                        <h3>
+                            Place your order
+                        </h3>
+
 
                         <p>
                             Add items to your cart and
@@ -473,11 +832,18 @@
                     </div>
 
 
+
                     <div class="step-card">
 
-                        <div class="step-number">03</div>
+                        <div class="step-number">
+                            03
+                        </div>
 
-                        <h3>Skip the queue</h3>
+
+                        <h3>
+                            Skip the queue
+                        </h3>
+
 
                         <p>
                             Collect your freshly prepared
@@ -486,6 +852,7 @@
 
                     </div>
 
+
                 </div>
 
             </div>
@@ -493,21 +860,34 @@
         </section>
 
 
-        <!-- ABOUT -->
-        <section class="about-section" id="about">
+
+        <!-- ================================
+             ABOUT
+        ================================= -->
+
+        <section
+            class="about-section"
+            id="about"
+        >
 
             <div class="section-container about-container">
 
+
                 <div class="about-content">
+
 
                     <span class="section-label">
                         ABOUT CANTEENGO
                     </span>
 
+
                     <h2>
+
                         Built for
                         <span>campus life.</span>
+
                     </h2>
+
 
                     <p>
                         CanteenGo is a smart campus food
@@ -516,128 +896,253 @@
                         and more convenient.
                     </p>
 
+
                     <p>
                         Instead of waiting in long queues,
                         students can order ahead and spend
                         their break doing what actually matters.
                     </p>
 
+
                 </div>
 
 
+
                 <div class="about-highlight">
+
 
                     <div class="highlight-number">
                         01
                     </div>
 
+
                     <div>
-                        <h3>Less waiting.</h3>
+
+                        <h3>
+                            Less waiting.
+                        </h3>
+
+
                         <p>
                             More time for your campus life.
                         </p>
+
                     </div>
 
+
                 </div>
+
 
             </div>
 
         </section>
 
+
     </main>
 
 
-    <!-- FOOTER -->
+
+    <!-- 
+================================
+         FOOTER
+    ================================= -->
+
     <footer class="footer">
+
 
         <div class="footer-container">
 
+
             <div class="footer-brand">
 
-                <a href="#" class="logo">
-                    <span class="logo-mark">CG</span>
+
+                <a
+                    href="#home"
+                    class="logo"
+                >
+
+                    <span class="logo-mark">
+                        CG
+                    </span>
+
+
                     <span class="logo-text">
                         Canteen<span>Go</span>
                     </span>
+
                 </a>
+
 
                 <p>
                     Smart food ordering for smarter
                     campus life.
                 </p>
 
+
             </div>
+
 
 
             <div class="footer-links">
 
-                <a href="#home">Home</a>
-                <a href="#menu">Menu</a>
-                <a href="#how-it-works">How It Works</a>
-                <a href="#about">About</a>
+                <a href="#home">
+                    Home
+                </a>
+
+                <a href="#menu">
+                    Menu
+                </a>
+
+                <a href="#how-it-works">
+                    How It Works
+                </a>
+
+                <a href="#about">
+                    About
+                </a>
 
             </div>
 
+
         </div>
+
 
 
         <div class="footer-bottom">
-            <p>© 2026 CanteenGo. Campus food, simplified.</p>
+
+            <p>
+                © 2026 CanteenGo.
+                Campus food, simplified.
+            </p>
+
         </div>
+
 
     </footer>
 
 
-    <!-- CART PANEL -->
-    <div class="cart-overlay" id="cartOverlay"></div>
 
-    <aside class="cart-panel" id="cartPanel">
+    <!-- ================================
+         CART OVERLAY
+    ================================= -->
+
+    <div
+        class="cart-overlay"
+        id="cartOverlay"
+    ></div>
+
+
+
+    <!-- ================================
+         CART PANEL
+    ================================= -->
+
+    <aside
+        class="cart-panel"
+        id="cartPanel"
+    >
+
 
         <div class="cart-header">
 
+
             <div>
-                <span class="section-label">YOUR ORDER</span>
-                <h2>Cart</h2>
+
+                <span class="section-label">
+                    YOUR ORDER
+                </span>
+
+
+                <h2>
+                    Cart
+                </h2>
+
             </div>
 
-            <button class="close-cart" id="closeCart">
+
+            <button
+                class="close-cart"
+                id="closeCart"
+            >
                 ×
             </button>
 
+
         </div>
 
 
-        <div class="cart-items" id="cartItems">
+
+        <div
+            class="cart-items"
+            id="cartItems"
+        >
+
 
             <div class="empty-cart">
-                <div>🛒</div>
-                <h3>Your cart is empty</h3>
+
+
+                <div>
+                    🛒
+                </div>
+
+
+                <h3>
+                    Your cart is empty
+                </h3>
+
+
                 <p>
-                    Add something delicious from
-                    the menu.
+                    Add something delicious
+                    from the menu.
                 </p>
+
+
             </div>
 
+
         </div>
+
 
 
         <div class="cart-footer">
 
+
             <div class="cart-total">
-                <span>Total</span>
-                <strong id="cartTotal">₹0</strong>
+
+                <span>
+                    Total
+                </span>
+
+
+                <strong id="cartTotal">
+                    ₹0
+                </strong>
+
             </div>
 
-            <button class="checkout-button" id="checkoutButton">
+
+            <button
+                class="checkout-button"
+                id="checkoutButton"
+            >
                 Proceed to checkout
             </button>
 
+
         </div>
+
 
     </aside>
 
 
+
+    <!-- ================================
+         JAVASCRIPT
+    ================================= -->
+
     <script src="script.js"></script>
 
+
 </body>
+
 </html>
