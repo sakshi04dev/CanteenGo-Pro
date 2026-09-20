@@ -1608,3 +1608,40 @@ a {
     }
 
 }
+/* =========================================
+   CART FOOTER FIX
+   Keeps checkout button always visible
+   ========================================= */
+
+.cart-panel {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-height: 100vh;
+}
+
+.cart-header {
+    flex-shrink: 0;
+}
+
+.cart-items {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+}
+
+.cart-footer {
+    flex-shrink: 0;
+    background: white;
+    position: relative;
+    z-index: 5;
+    box-shadow: 0 -8px 20px rgba(0, 0, 0, 0.04);
+}
+
+.checkout-button {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    position: relative;
+    z-index: 10;
+}
